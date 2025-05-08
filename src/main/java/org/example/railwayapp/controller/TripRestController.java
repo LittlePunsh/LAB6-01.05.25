@@ -21,7 +21,6 @@ public class TripRestController {
     @GetMapping
     public ResponseEntity<List<Trip>> getAllTrips() {
         List<Trip> trips = railwayDataService.getAllTripsOrdered();
-        // ВНИМАНИЕ: В реальном API нужно добавить проверку аутентификации и авторизации пользователя!
-        return ResponseEntity.ok(trips); // Возвращаем список рейсов с статусом 200 OK
+        return ResponseEntity.ok(trips);
     }
 }
