@@ -21,10 +21,8 @@ public class UserController {
 
     @GetMapping
     public String userPage(Model model, HttpSession session) {
-        // Проверяем аутентификацию и роль
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         if (loggedInUser == null || !"user".equals(loggedInUser.getRole())) {
-            // Если не пользователь или не залогинен, перенаправляем
             return "redirect:/login?error=accessDenied";
         }
 
