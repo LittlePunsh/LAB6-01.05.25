@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin/railwaydata") // Базовый путь для API админских данных
+@RequestMapping("/api/admin/railwaydata")
 public class AdminDataRestController {
 
     @Autowired
     private RailwayDataService railwayDataService;
-
-    // Эндпоинт для получения всех рейсов с билетами для админа через API
     @GetMapping
     public ResponseEntity<List<AdminTripDto>> getAllTripsWithTickets() {
         List<AdminTripDto> tripsAndTickets = railwayDataService.getAllTripsWithTicketsForAdmin();
