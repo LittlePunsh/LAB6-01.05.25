@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/trips") // Базовый путь для API рейсов
+@RequestMapping("/api/trips")
 public class TripRestController {
 
     @Autowired
     private RailwayDataService railwayDataService;
 
-    // Эндпоинт для получения всех рейсов через API
     @GetMapping
     public ResponseEntity<List<Trip>> getAllTrips() {
         List<Trip> trips = railwayDataService.getAllTripsOrdered();
