@@ -43,22 +43,17 @@ public class AuthController {
                                HttpSession session,
                                RedirectAttributes redirectAttributes) {
 
-        // 1. Найти пользователя по имени
         Optional<User> userOptional = userService.findByUsername(username);
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            // 2. ПРОВЕРЯЕМ ПАРОЛЬ ПРЯМЫМ СРАВНЕНИЕМ СТРОК
             if (password.equals(user.getPassword())) {
-                // 3. Если пароль верный, сохранить пользователя в сессии
                 session.setAttribute("loggedInUser", user);
 
-                // 4. Перенаправить на /default для определения страницы по роли
                 return "redirect:/default";
             }
         }
 
-        // Если пользователь не найден или пароль неверный
         redirectAttributes.addFlashAttribute("errorMessage", "Неверные имя пользователя или пароль.");
         return "redirect:/login?error=true";
     }
